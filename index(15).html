@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soufiane Bentout — Professor of Applied Mathematics</title>
+<meta name="description" content="Soufiane Bentout — Professor of Applied Mathematics, University of Ain Temouchent, Belhadj Bouchaib. Research in nonlinear PDEs, reaction-diffusion systems, and spatial epidemic modeling.">
+<link rel="icon" href="assets/profile.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #F6F7FB; --bg-panel: #FFFFFF; --bg-panel-alt: #EFF2FA; --bg-raised: #E7EBF6;
+    --accent-violet: #6F4CE0; --accent-cyan: #0EA5B7; --accent-amber: #C97F12;
+    --text: #171D33; --text-muted: #4E5872; --text-dim: #838DA8;
+    --border: rgba(23,29,51,0.09); --border-strong: rgba(23,29,51,0.18);
+    --radius: 14px;
+    --shadow-sm: 0 1px 2px rgba(23,29,51,0.04), 0 1px 1px rgba(23,29,51,0.03);
+    --shadow-md: 0 10px 30px rgba(23,29,51,0.07), 0 2px 8px rgba(23,29,51,0.04);
+    --display: 'Space Grotesk', sans-serif; --body: 'Inter', sans-serif; --mono: 'IBM Plex Mono', monospace;
+  }
+  *{ box-sizing: border-box; margin:0; padding:0; }
+  html{ scroll-behavior: smooth; }
+  body{ background: var(--bg); color: var(--text); font-family: var(--body); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  a{ color: inherit; text-decoration: none; } ul{ list-style: none; } img{ max-width:100%; display:block; }
+  .icon{ width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex-shrink:0; vertical-align: middle; }
+  body::before{
+    content:""; position: fixed; inset: 0;
+    background-image: radial-gradient(circle at 15% 8%, rgba(111,76,224,0.09), transparent 40%),
+                       radial-gradient(circle at 88% 18%, rgba(14,165,183,0.08), transparent 42%);
+    pointer-events:none; z-index:0;
+  }
+  .wrap{ max-width: 980px; margin: 0 auto; padding: 0 28px; position: relative; z-index:1; }
+  .eyebrow{ font-family: var(--mono); font-size: 12px; letter-spacing:.14em; text-transform: uppercase; color: var(--accent-cyan); display:inline-flex; align-items:center; gap:10px; }
+  .eyebrow::before{ content:""; width:18px; height:1px; background: var(--accent-cyan); display:inline-block; }
+  h1,h2,h3,h4{ font-family: var(--display); font-weight:600; letter-spacing:-0.01em; }
+
+  header.site{ position: sticky; top:0; z-index:50; background: rgba(246,247,251,0.85); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); }
+  nav{ display:flex; align-items:center; justify-content: space-between; flex-wrap:wrap; gap:10px; padding:14px 28px; max-width:980px; margin:0 auto; }
+  .brand{ display:flex; align-items:center; gap:12px; }
+  .brand img{ width:42px; height:42px; border-radius:50%; object-fit:cover; box-shadow: var(--shadow-sm); }
+  .brand-text{ display:flex; flex-direction:column; line-height:1.15; }
+  .brand-text strong{ font-family: var(--display); font-size:15px; }
+  .brand-text span{ font-family: var(--mono); font-size:10px; color: var(--text-dim); letter-spacing:.05em; }
+  .nav-links{ display:flex; gap:26px; align-items:center; }
+  .nav-links a{ font-size:13.5px; color: var(--text-muted); font-weight:500; transition: color .2s; }
+  .nav-links a:hover{ color: var(--accent-violet); }
+  .nav-cta{ border:1px solid var(--border-strong); padding:9px 16px; border-radius:999px; font-size:13px; font-weight:500; display:inline-flex; align-items:center; gap:7px; transition: all .2s; }
+  .nav-cta:hover{ background: var(--accent-violet); border-color: var(--accent-violet); color:#fff; }
+  @media (max-width:760px){ .nav-links{ display:none; } }
+
+  .hero{ padding: 64px 0 56px; }
+  .hero-grid{ display:grid; grid-template-columns: 0.62fr 1fr; gap:44px; align-items:center; }
+  .hero-photo{ aspect-ratio:1/1; border-radius:20px; overflow:hidden; box-shadow: var(--shadow-md); border:1px solid var(--border); }
+  .hero-photo img{ width:100%; height:100%; object-fit:cover; }
+  .hero h1{ font-size: clamp(28px,4vw,40px); line-height:1.08; margin: 14px 0 6px; }
+  .hero .role{ font-size:16px; color: var(--accent-violet); font-weight:600; margin-bottom:10px; }
+  .hero .affil{ font-size:14px; color: var(--text-muted); margin-bottom:20px; max-width:480px; }
+  .quick-links{ display:flex; flex-wrap:wrap; gap:10px; margin-bottom:24px; }
+  .quick-links a{ font-size:12.5px; font-weight:500; border:1px solid var(--border-strong); padding:8px 14px; border-radius:999px; display:inline-flex; align-items:center; gap:7px; background: var(--bg-panel); transition: all .2s; }
+  .quick-links a:hover{ border-color: var(--accent-cyan); color: var(--accent-cyan); }
+  .hero-stats{ display:flex; gap:28px; flex-wrap:wrap; }
+  .hero-stats div strong{ display:block; font-family: var(--display); font-size:24px; color: var(--text); }
+  .hero-stats div span{ font-size:11px; color: var(--text-dim); font-family: var(--mono); letter-spacing:.04em; }
+  @media (max-width:760px){ .hero-grid{ grid-template-columns:1fr; } .hero-photo{ max-width:180px; margin:0 auto; } .hero{ text-align:center; } .hero .affil{ margin-left:auto; margin-right:auto; } .quick-links, .hero-stats{ justify-content:center; } }
+
+  section{ padding: 56px 0; }
+  .section-head{ max-width:640px; margin-bottom:32px; }
+  .section-head h2{ font-size: clamp(22px,3vw,28px); margin-top:10px; }
+  .section-head p{ color: var(--text-muted); margin-top:8px; font-size:14.5px; }
+
+  .profile-text{ font-size:15px; color: var(--text-muted); max-width:760px; }
+
+  .timeline-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 36px; }
+  .tl-col h3{ font-size:14px; font-family: var(--mono); text-transform:uppercase; letter-spacing:.06em; color: var(--accent-violet); margin-bottom:16px; }
+  .tl-item{ padding-left:18px; border-left:2px solid var(--border); position:relative; padding-bottom:18px; }
+  .tl-item::before{ content:""; position:absolute; left:-6px; top:2px; width:10px; height:10px; border-radius:50%; background: var(--accent-cyan); border:2px solid var(--bg); }
+  .tl-item:last-child{ padding-bottom:0; }
+  .tl-item .tl-title{ font-weight:600; font-size:14px; color: var(--text); }
+  .tl-item .tl-date{ font-family: var(--mono); font-size:11px; color: var(--accent-amber); display:block; margin:2px 0 3px; }
+  .tl-item .tl-org{ font-size:12.5px; color: var(--text-muted); font-style: italic; }
+  @media (max-width:700px){ .timeline-grid{ grid-template-columns:1fr; } }
+
+  .admin-list li, .simple-list li{ font-size:14px; color: var(--text-muted); padding:10px 0; border-bottom:1px solid var(--border); }
+  .admin-list li b, .simple-list li b{ color: var(--text); }
+  .simple-list li .sl-date{ font-family: var(--mono); font-size:11px; color: var(--accent-amber); float:right; }
+
+  .accordion{ border:1px solid var(--border); border-radius: var(--radius); background: var(--bg-panel); overflow:hidden; box-shadow: var(--shadow-sm); }
+  .accordion-head{ display:flex; align-items:center; justify-content:space-between; padding:18px 22px; cursor:pointer; }
+  .accordion-head h3{ font-size:15px; }
+  .accordion-head .accordion-hint{ font-family: var(--mono); font-size:11px; color: var(--accent-violet); display:flex; align-items:center; gap:6px; }
+  .accordion-head .accordion-hint .icon{ width:12px; height:12px; transition: transform .25s; }
+  .accordion.open .accordion-hint .icon{ transform: rotate(180deg); }
+  .accordion-body{ max-height:0; overflow:hidden; transition: max-height .4s ease; }
+  .accordion.open .accordion-body{ max-height: 4000px; }
+  .accordion-inner{ padding: 0 22px 22px; }
+
+  .pub-list{ counter-reset: pub; }
+  .pub-list li{ font-size:13.5px; color: var(--text-muted); padding:10px 0; border-bottom:1px solid var(--border); padding-left:30px; position:relative; }
+  .pub-list li::before{ counter-increment: pub; content: "[" counter(pub) "]"; position:absolute; left:0; top:10px; font-family: var(--mono); font-size:11px; color: var(--accent-cyan); }
+  .pub-list li b{ color: var(--text); }
+  .pub-list li a{ color: var(--accent-violet); font-family: var(--mono); font-size:11.5px; }
+  .pub-list li a:hover{ text-decoration: underline; }
+  .pub-list li:last-child{ border-bottom:none; }
+
+  table.teach{ width:100%; border-collapse: collapse; font-size:13px; }
+  table.teach th{ text-align:left; font-family: var(--mono); font-size:10.5px; text-transform:uppercase; letter-spacing:.05em; color: var(--text-dim); padding:8px 10px; border-bottom:1px solid var(--border); }
+  table.teach td{ padding:10px; border-bottom:1px solid var(--border); color: var(--text-muted); vertical-align:top; }
+  table.teach tr:nth-child(even){ background: var(--bg-panel-alt); }
+  table.teach td:first-child{ color: var(--text); font-weight:600; white-space:nowrap; }
+  table.teach td:last-child{ white-space:nowrap; }
+
+  .conf-list li, .thesis-list li{ font-size:13.5px; color: var(--text-muted); padding:12px 0; border-bottom:1px solid var(--border); }
+  .conf-list li:last-child, .thesis-list li:last-child{ border-bottom:none; }
+  .conf-list .c-type{ font-family: var(--mono); font-size:10.5px; color: var(--accent-violet); text-transform:uppercase; letter-spacing:.04em; }
+  .conf-list .c-date, .thesis-list .th-date{ float:right; font-family: var(--mono); font-size:11px; color: var(--accent-amber); }
+  .conf-list .c-title, .thesis-list .th-title{ display:block; color: var(--text); font-weight:600; margin:3px 0 2px; }
+
+  .service-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .service-col h3{ font-family: var(--mono); font-size:12px; text-transform:uppercase; letter-spacing:.06em; color: var(--accent-violet); margin-bottom:14px; display:flex; align-items:center; gap:8px; }
+  .service-col h3 .icon{ width:15px; height:15px; }
+  @media (max-width:700px){ .service-grid{ grid-template-columns:1fr; } }
+
+  .contact-panel{ background: var(--bg-panel); border:1px solid var(--border); border-radius: var(--radius); padding:40px; box-shadow: var(--shadow-md); }
+  .cline{ display:flex; gap:14px; margin-bottom:18px; align-items:flex-start; }
+  .cline .cicon{ width:36px; height:36px; border-radius:9px; background: var(--bg-panel-alt); color: var(--accent-violet); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .cline .cicon .icon{ width:17px; height:17px; }
+  .cline .k{ display:block; font-family: var(--mono); font-size:10.5px; color: var(--text-dim); text-transform:uppercase; letter-spacing:.05em; margin-bottom:3px; }
+  .cline .v{ color: var(--text); font-weight:500; font-size:14px; }
+  .cline .v a:hover{ color: var(--accent-cyan); }
+
+  footer{ border-top:1px solid var(--border); padding:30px 0; text-align:center; }
+  footer p{ font-size:12px; color: var(--text-dim); }
+</style>
+</head>
+<body>
+
+<svg style="display:none">
+  <symbol id="i-mail" viewBox="0 0 24 24"><path d="M3 6h18v12H3z" stroke="currentColor" fill="none" stroke-width="1.8" stroke-linejoin="round"/><path d="M3 7l9 6 9-6" stroke="currentColor" fill="none" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 22s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12z" stroke="currentColor" fill="none" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.6" stroke="currentColor" fill="none" stroke-width="1.8"/></symbol>
+  <symbol id="i-badge" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2" stroke="currentColor" fill="none" stroke-width="1.8"/><circle cx="12" cy="10" r="2.6" stroke="currentColor" fill="none" stroke-width="1.7"/><path d="M8 17c.5-1.8 2-2.8 4-2.8s3.5 1 4 2.8" stroke="currentColor" fill="none" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-cap" viewBox="0 0 24 24"><path d="M12 3 2 8l10 5 10-5-10-5z" stroke="currentColor" fill="none" stroke-width="1.8" stroke-linejoin="round"/><path d="M6 10.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-5.5M22 8v6" stroke="currentColor" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-network" viewBox="0 0 24 24"><circle cx="12" cy="12" r="2.6" stroke="currentColor" fill="none" stroke-width="1.8"/><circle cx="4" cy="5" r="2" stroke="currentColor" fill="none" stroke-width="1.8"/><circle cx="20" cy="5" r="2" stroke="currentColor" fill="none" stroke-width="1.8"/><circle cx="4" cy="19" r="2" stroke="currentColor" fill="none" stroke-width="1.8"/><circle cx="20" cy="19" r="2" stroke="currentColor" fill="none" stroke-width="1.8"/><path d="M5.6 6.4 10 10.4M18.4 6.4 14 10.4M5.6 17.6 10 13.6M18.4 17.6 14 13.6" stroke="currentColor" stroke-width="1.6"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M7 2h7l4 4v16H7z" stroke="currentColor" fill="none" stroke-width="1.8" stroke-linejoin="round"/><path d="M14 2v4h4M9.5 12h6M9.5 15.5h6M9.5 8.5h2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-chevron" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-award" viewBox="0 0 24 24"><circle cx="12" cy="8" r="5.2" stroke="currentColor" fill="none" stroke-width="1.8"/><path d="M8.5 12.5 7 21l5-2.5L17 21l-1.5-8.5" stroke="currentColor" fill="none" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+  <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" stroke="currentColor" fill="none" stroke-width="1.7"/><circle cx="12" cy="12" r="4.7" stroke="currentColor" fill="none" stroke-width="1.7"/><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2" stroke="currentColor" fill="none" stroke-width="1.8"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M16 8.5a3 3 0 1 1 0 6M21 20c0-2.8-2-5.1-4.7-5.8" stroke="currentColor" fill="none" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H20v17H6.5A2.5 2.5 0 0 0 4 21.5v-17z" stroke="currentColor" fill="none" stroke-width="1.7" stroke-linejoin="round"/><path d="M4 19a2.5 2.5 0 0 1 2.5-2.5H20" stroke="currentColor" fill="none" stroke-width="1.7"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" stroke="currentColor" fill="none" stroke-width="1.8"/><path d="m21 21-4.3-4.3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-flask" viewBox="0 0 24 24"><path d="M9 2h6M10 2v6.2c0 .5-.2 1-.5 1.4L4.8 17c-1.2 1.6 0 4 2 4h10.4c2 0 3.2-2.4 2-4l-4.7-7.4c-.3-.4-.5-.9-.5-1.4V2" stroke="currentColor" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M4 12h16M13 5l7 7-7 7" stroke="currentColor" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<header class="site">
+  <nav>
+    <a href="#top" class="brand">
+      <img src="assets/profile.jpg" alt="Soufiane Bentout">
+      <div class="brand-text"><strong>Soufiane Bentout</strong><span>APPLIED MATHEMATICS</span></div>
+    </a>
+    <div class="nav-links">
+      <a href="#profile">Profile</a>
+      <a href="#positions">Positions</a>
+      <a href="#publications">Publications</a>
+      <a href="#teaching">Teaching</a>
+      <a href="#service">Service</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="#contact" class="nav-cta"><svg class="icon"><use href="#i-mail"/></svg>Contact</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-photo"><img src="assets/profile.jpg" alt="Soufiane Bentout"></div>
+      <div>
+        <span class="eyebrow">University of Ain Temouchent, Belhadj Bouchaib</span>
+        <h1>Soufiane Bentout</h1>
+        <p class="role">Professor of Applied Mathematics</p>
+        <p class="affil">Department of Mathematics and Computer Science, Faculty of Science and Technology — Team Leader, Laboratory of Multidisciplinary Research and Innovation in Science and Engineering (LMRISE)</p>
+        <div class="quick-links">
+          <a href="https://orcid.org/0000-0002-3699-7346" target="_blank" rel="noopener"><svg class="icon"><use href="#i-badge"/></svg>ORCID</a>
+          <a href="https://scholar.google.com/citations?user=mfAJBVcAAAAJ" target="_blank" rel="noopener"><svg class="icon"><use href="#i-cap"/></svg>Google Scholar</a>
+          <a href="https://www.researchgate.net/profile/Soufiane-Bentout" target="_blank" rel="noopener"><svg class="icon"><use href="#i-network"/></svg>ResearchGate</a>
+          <a href="https://bentouts.github.io/LabLMRISE.github.io/" target="_blank" rel="noopener"><svg class="icon"><use href="#i-target"/></svg>MRISE Lab</a>
+        </div>
+        <div class="hero-stats">
+          <div><strong>44</strong><span>PUBLICATIONS</span></div>
+          <div><strong>12</strong><span>THESES SUPERVISED</span></div>
+          <div><strong>10+</strong><span>YEARS IN ACADEMIA</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PROFILE ================= -->
+  <section id="profile">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Academic Profile</span>
+        <h2>Nonlinear PDEs &amp; spatial epidemic modeling</h2>
+      </div>
+      <p class="profile-text">Professor specializing in nonlinear partial differential equations and spatial epidemic modeling. My research focuses on reaction–diffusion systems with nonlocal dispersal, age-structured models, and delay-differential equations, with applications in epidemiology and ecological dynamics.</p>
+    </div>
+  </section>
+
+  <!-- ================= POSITIONS & EDUCATION ================= -->
+  <section id="positions">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Career &amp; Training</span>
+        <h2>Positions &amp; Education</h2>
+      </div>
+      <div class="timeline-grid">
+        <div class="tl-col">
+          <h3>Professional Experience</h3>
+          <div class="tl-item"><span class="tl-title">Professor (competitive qualification)</span><span class="tl-date">2026 – present</span><span class="tl-org">University of Ain Temouchent, Belhadj Bouchaib, Algeria</span></div>
+          <div class="tl-item"><span class="tl-title">Associate Professor (HDR-qualified)</span><span class="tl-date">2021 – 2026</span><span class="tl-org">University of Ain Temouchent, Belhadj Bouchaib, Algeria</span></div>
+          <div class="tl-item"><span class="tl-title">Associate Professor (Class B)</span><span class="tl-date">2018 – 2020</span><span class="tl-org">University Center Belhadj Bouchaib, Ain Temouchent, Algeria</span></div>
+          <div class="tl-item"><span class="tl-title">Assistant Professor (Class B)</span><span class="tl-date">2016 – 2018</span><span class="tl-org">University Center Belhadj Bouchaib, Ain Temouchent, Algeria</span></div>
+          <div class="tl-item"><span class="tl-title">Secondary School Mathematics Teacher</span><span class="tl-date">2014 – 2016</span><span class="tl-org">Algeria</span></div>
+        </div>
+        <div class="tl-col">
+          <h3>Education</h3>
+          <div class="tl-item"><span class="tl-title">Ph.D. in Applied Mathematics</span><span class="tl-date">2016</span><span class="tl-org">Nonlinear Systems and Applied Mathematics, Highest Honors — University Abou Bekr Belkaïd, Tlemcen. Supervisor: Prof. Mohammed Tarik Touaoula</span></div>
+          <div class="tl-item"><span class="tl-title">Master in Mathematics</span><span class="tl-date">2010 – 2012</span><span class="tl-org">Dynamical Systems and Applications to Population Dynamics — University Abou Bekr Belkaïd, Tlemcen</span></div>
+          <div class="tl-item"><span class="tl-title">Licence in Mathematics</span><span class="tl-date">2007 – 2010</span><span class="tl-org">Partial Differential Equations — University Abou Bekr Belkaïd, Tlemcen</span></div>
+          <div class="tl-item"><span class="tl-title">Baccalaureate</span><span class="tl-date">2007</span><span class="tl-org">Natural and Life Sciences — Mustapha Mostefai High School, Nedroma</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ADMINISTRATIVE ================= -->
+  <section id="admin" style="padding-top:0;">
+    <div class="wrap">
+      <div class="section-head"><span class="eyebrow">Academic Governance</span><h2>Administrative Responsibilities</h2></div>
+      <ul class="admin-list">
+        <li><b>Member of the Scientific Committee</b> — Department of Mathematics and Computer Science, University of Ain Temouchent, Belhadj Bouchaib · 2024 – present</li>
+        <li><b>Head of the Department of Mathematics and Computer Science</b> — University Center Belhadj Bouchaib, Ain Temouchent · 2020 – 2021</li>
+        <li><b>Member of the Scientific Council</b> — Institute of Sciences, University Center Belhadj Bouchaib, Ain Temouchent · 2016 – 2019</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================= PUBLICATIONS ================= -->
+  <section id="publications">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">44 peer-reviewed articles</span>
+        <h2>International Scientific Publications</h2>
+        <p>Since 2016, spanning nonlinear PDEs, reaction–diffusion systems, nonlocal dispersal, age-structured and delay epidemic models.</p>
+      </div>
+      <div class="accordion" id="pubAccordion">
+        <div class="accordion-head" onclick="document.getElementById('pubAccordion').classList.toggle('open')">
+          <h3><svg class="icon" style="color:var(--accent-violet)"><use href="#i-doc"/></svg> &nbsp;View all 44 publications</h3>
+          <span class="accordion-hint">Expand <svg class="icon"><use href="#i-chevron"/></svg></span>
+        </div>
+        <div class="accordion-body"><div class="accordion-inner"><ol class="pub-list" id="pubList"></ol></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= TEACHING ================= -->
+  <section id="teaching">
+    <div class="wrap">
+      <div class="section-head"><span class="eyebrow">2016 – 2026</span><h2>Teaching Activities</h2><p>C = Lectures · TD = Tutorials · TP = Practical sessions. L1/L2/L3 = Licence 1–3 · M1/M2 = Master 1/2.</p></div>
+      <div class="accordion" id="teachAccordion">
+        <div class="accordion-head" onclick="document.getElementById('teachAccordion').classList.toggle('open')">
+          <h3><svg class="icon" style="color:var(--accent-violet)"><use href="#i-cap"/></svg> &nbsp;View full teaching record (10 years)</h3>
+          <span class="accordion-hint">Expand <svg class="icon"><use href="#i-chevron"/></svg></span>
+        </div>
+        <div class="accordion-body"><div class="accordion-inner" style="overflow-x:auto;">
+          <table class="teach">
+            <thead><tr><th>Year</th><th>Modules Taught</th><th>Language</th></tr></thead>
+            <tbody>
+              <tr><td>2016–17</td><td>Numerical Analysis (L2, TD; M1, TD) · Partial Differential Equations (M1, TD) · Ordinary Differential Equations (M1, TD) · Modeling &amp; Simulation (M1, C+TP)</td><td>French</td></tr>
+              <tr><td>2017–18</td><td>Modeling &amp; Simulation (M1, C+TD) · Numerical Analysis (M1, C+TD+TP) · Mathematical Modeling Tools (M1, C+TD) · Dynamical Systems (M1, C+TD)</td><td>French</td></tr>
+              <tr><td>2018–19</td><td>Mathematical Modeling Tools (M1, C+TD) · Numerical Analysis (M1, TD+TP; L2, TP) · Programming Tools (L1, TP)</td><td>French</td></tr>
+              <tr><td>2019–20</td><td>Numerical Analysis (M1, C+TP; L2, TP) · Mathematical Modeling Tools (M1, C+TD) · Modeling &amp; Simulation (M1, C+TP)</td><td>French</td></tr>
+              <tr><td>2020–21</td><td>Modeling &amp; Simulation (M1, C+TD) · Numerical Analysis (M1, C+TD+TP) · Dynamical Systems (M1, C+TD)</td><td>French</td></tr>
+              <tr><td>2021–22</td><td>Numerical Analysis (M1, C+TD+TP) · Numerical Analysis 1 (L2, TP) · Modeling &amp; Simulation (M1, C+TP) · Dynamical Systems (M1, C+TD) · Numerical Analysis 2 (L2, TP)</td><td>French</td></tr>
+              <tr><td>2022–23</td><td>Numerical Analysis 1 (L2, TP) · Unconstrained Optimization (L3, C+TD+TP) · Algebra 1 (L1, TD) · Programming Tools (L1, TP) · Numerical Analysis 2 (L2, TD+TP)</td><td>French</td></tr>
+              <tr><td>2023–24</td><td>Numerical Analysis 1 (L2, C+TD+TP) · Numerical Analysis 2 (L2, C+TD+TP) · Unconstrained Optimization (L3, C+TD+TP) · Programming Tools (L1, TP)</td><td>French</td></tr>
+              <tr><td>2024–25</td><td>Numerical Analysis 1 (M1 Biomathematics, C+TP) · Numerical Analysis 2 (M1 Biomathematics, C+TP) · Unconstrained Optimization (L3, C+TD+TP) · Programming Tools (L1, TP)</td><td>English</td></tr>
+              <tr><td>2025–26</td><td>Numerical Analysis 1 (M1 Biomathematics, C+TP) · Modeling 3 (M2 Biomathematics, C+TD) · Numerical Analysis 2 (M1 Biomathematics, C+TP) · Algebra 2 (L1, TD)</td><td>English</td></tr>
+            </tbody>
+          </table>
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SUPERVISION ================= -->
+  <section id="supervision">
+    <div class="wrap">
+      <div class="section-head"><span class="eyebrow">12 theses</span><h2>Master's Thesis Supervision</h2></div>
+      <div class="accordion" id="thesisAccordion">
+        <div class="accordion-head" onclick="document.getElementById('thesisAccordion').classList.toggle('open')">
+          <h3><svg class="icon" style="color:var(--accent-violet)"><use href="#i-users"/></svg> &nbsp;View all 12 supervised theses</h3>
+          <span class="accordion-hint">Expand <svg class="icon"><use href="#i-chevron"/></svg></span>
+        </div>
+        <div class="accordion-body"><div class="accordion-inner">
+          <ul class="thesis-list">
+            <li><span class="th-date">05/06/2018</span><span class="th-title">On the Modeling of Epidemiological Dynamics</span>Ines Zendagui</li>
+            <li><span class="th-date">12/06/2020</span><span class="th-title">An Epidemiological Model with Age-Structured Vaccination</span>Youcef Belbachir</li>
+            <li><span class="th-date">11/09/2020</span><span class="th-title">Mathematical Study of an Epidemic Model with Two Age Classes</span>Zerga Mohammed El Hadi</li>
+            <li><span class="th-date">23/09/2020</span><span class="th-title">Asymptotic Behavior of an Age-Structured Heroin Epidemic Model with Treatment</span>Hadjira Gasmi</li>
+            <li><span class="th-date">13/07/2021</span><span class="th-title">Mathematical Study of an Epidemic Model with Two Age Classes</span>Belkalouche Nour Elhouda</li>
+            <li><span class="th-date">14/07/2021</span><span class="th-title">Global Stability of a Viral Model with Diffusion and Time Delay</span>Imane Medini</li>
+            <li><span class="th-date">23/06/2022</span><span class="th-title">Dynamics of a Reaction-Diffusion Predator-Prey Model with Leslie-Gower Functional Response</span>Metalsi Bouchra</li>
+            <li><span class="th-date">22/06/2023</span><span class="th-title">Global Properties of the Basic Viral Dynamics Model</span>Soumia Benmar</li>
+            <li><span class="th-date">22/06/2023</span><span class="th-title">Dynamics of a Lotka-Volterra Model with Two Predators, One Prey, and a Delay</span>Kamel Nasr Allah Ghezzal</li>
+            <li><span class="th-date">12/06/2024</span><span class="th-title">Dynamics of a Diffusive HBV Model with Age Structure and Saturating Incidence</span>Farah Cherifa Frioui</li>
+            <li><span class="th-date">21/06/2026</span><span class="th-title">Spatiotemporal Dynamics and Wave Propagation in the Diffusive Kermack-McKendrick Epidemic Model</span>Manel Bakhti</li>
+            <li><span class="th-date">21/06/2026</span><span class="th-title">Global Dynamics of a Nonlocal Delayed Viral Infection Model in Heterogeneous Environments</span>Malik Belhadri</li>
+          </ul>
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CONFERENCES ================= -->
+  <section id="conferences">
+    <div class="wrap">
+      <div class="section-head"><span class="eyebrow">Since 2014</span><h2>International Conferences &amp; Presentations</h2></div>
+      <ul class="conf-list">
+        <li><span class="c-date">2025</span><span class="c-type">Plenary Speaker</span><span class="c-title">Dynamics of a Generalized Reaction-Diffusion Viral Infection Model</span>2nd International Conference "Nonlinear Analysis: Theory and Applications" (NATA'25), University Hassiba Benbouali de Chlef (UHBC), Algeria</li>
+        <li><span class="c-date">2023</span><span class="c-type">International Presentation</span><span class="c-title">Dynamics of a Diffusion Dispersal Viral Epidemic Model with Age of Infection and General Nonlinear Rates</span>2nd International Workshop on Applied Mathematics (2nd-IWAM'2023), Constantine, Algeria</li>
+        <li><span class="c-date">2019</span><span class="c-type">Oral Presentation</span><span class="c-title">Global Dynamics of an Age-Structured Alcoholism Model</span>Workshop on Mathematical Biology, Sidi Bel Abbès, Algeria</li>
+        <li><span class="c-date">2015</span><span class="c-type">Oral Presentation</span><span class="c-title">Global Analysis of an Infection-Age Structured Model with Classes of Nonlinear Incidence Rates</span>Workshop, Ettore Majorana Centre for Scientific Culture, Erice, Italy</li>
+        <li><span class="c-date">2014</span><span class="c-type">Oral Presentation</span>Workshop on Mathematics for Life Sciences, University Djillali Liabès, Sidi Bel Abbès, Algeria</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================= SERVICE & OTHER ================= -->
+  <section id="service">
+    <div class="wrap">
+      <div class="section-head"><span class="eyebrow">Beyond research &amp; teaching</span><h2>Academic Service &amp; Activities</h2></div>
+      <div class="service-grid">
+        <div class="service-col">
+          <h3><svg class="icon"><use href="#i-book"/></svg>Editorial Responsibilities</h3>
+          <ul class="simple-list">
+            <li><b>Academic Editor</b> — <i>Journal of Applied Mathematics</i> (Wiley) <span class="sl-date">2025–present</span></li>
+            <li><b>Editor</b> — <i>Journal of Applied Mathematics and Computing</i> <span class="sl-date">2025–present</span></li>
+            <li><b>Team Leader</b> — LMRISE, University of Ain Temouchent <span class="sl-date">2026</span></li>
+          </ul>
+        </div>
+        <div class="service-col">
+          <h3><svg class="icon"><use href="#i-search"/></svg>Scientific Reviewing &amp; Examination</h3>
+          <ul class="simple-list">
+            <li>PhD Thesis Jury Chair — Univ. Ain Temouchent <span class="sl-date">05/2026</span></li>
+            <li>PhD Thesis Examiner — Univ. Ain Temouchent <span class="sl-date">05/2026</span></li>
+            <li>PhD Thesis Examiner — Univ. Tlemcen <span class="sl-date">07/2023</span> (×2)</li>
+            <li>Teaching Material Review — Univ. Ain Temouchent <span class="sl-date">2023, 2025</span></li>
+          </ul>
+        </div>
+        <div class="service-col">
+          <h3><svg class="icon"><use href="#i-flask"/></svg>Books &amp; Teaching Materials</h3>
+          <ul class="simple-list">
+            <li><b>Book Chapter (2022)</b> — New results on modeling herd behavior in ecological interactions. <i>Applications of Fractional Calculus to Modeling in Dynamics and Chaos</i>, Taylor &amp; Francis</li>
+            <li><b>Teaching Manual (2025)</b> — <i>Unconstrained Optimization</i></li>
+            <li><b>Teaching Manual (2026)</b> — <i>Numerical Analysis of Partial Differential Equations: Methods and Applications</i></li>
+          </ul>
+        </div>
+        <div class="service-col">
+          <h3><svg class="icon"><use href="#i-target"/></svg>Research Perspectives &amp; Projects</h3>
+          <ul class="simple-list">
+            <li><b>Predator-Prey Models with Advection and Free Boundaries</b> — ongoing</li>
+            <li><b>SIS Model with Free Boundaries</b> — ongoing</li>
+            <li><b>Age-Structured Hsu Virus–Bacteria Model</b> — ongoing</li>
+            <li><b>CNEPRU Project</b> No. C00L03UN1301201500 <span class="sl-date">2016–2020</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CONTACT ================= -->
+  <section id="contact">
+    <div class="wrap">
+      <div class="section-head"><span class="eyebrow">Get in touch</span><h2>Contact</h2></div>
+      <div class="contact-panel">
+        <div class="cline"><div class="cicon"><svg class="icon"><use href="#i-mail"/></svg></div><div><span class="k">Email</span><span class="v"><a href="mailto:soufiane.bentout@univ-temouchent.edu.dz">soufiane.bentout@univ-temouchent.edu.dz</a> · <a href="mailto:bentoutsofiane@gmail.com">bentoutsofiane@gmail.com</a></span></div></div>
+        <div class="cline"><div class="cicon"><svg class="icon"><use href="#i-pin"/></svg></div><div><span class="k">Address</span><span class="v">46000 Ain Temouchent, Algeria</span></div></div>
+        <div class="cline"><div class="cicon"><svg class="icon"><use href="#i-target"/></svg></div><div><span class="k">Laboratory</span><span class="v"><a href="https://bentouts.github.io/LabLMRISE.github.io/" target="_blank" rel="noopener">LMRISE Lab</a> — Team Leader, Team 5</span></div></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap"><p>© <span id="year"></span> Soufiane Bentout — Professor of Applied Mathematics, University of Ain Temouchent, Belhadj Bouchaib.</p></div>
+</footer>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
+const publications = [
+  { a: 'Hacini, M.E.M., Hammoudi, D., Djilali, S., <b>Bentout, S.</b>', y: 2021, t: 'Optimal harvesting and stability of a predator-prey model for fish populations with schooling behavior', j: 'Theory in Biosciences', vol: '140(2), 225–239' },
+  { a: 'Djilali, S., <b>Bentout, S.</b>, Kumar, S., Touaoula, T.M.', y: 2021, t: 'Approximating the asymptomatic infectious cases of COVID-19 in Algeria and India using a mathematical model', j: 'International Journal of Modeling, Simulation, and Scientific Computing', vol: '13(04), 2250028' },
+  { a: '<b>Bentout, S.</b>, Chen, Y., Djilali, S.', y: 2021, t: 'Global dynamics of an SEIR model with two age structures and a nonlinear incidence', j: 'Acta Applicandae Mathematicae', vol: '171(1), 1–27' },
+  { a: '<b>Bentout, S.</b>, Djilali, S., Kumar, S.', y: 2021, t: 'Mathematical analysis of the influence of prey escaping from prey herd on three species fractional predator-prey interaction model', j: 'Physica A: Statistical Mechanics and its Applications', vol: '572, 125840' },
+  { a: 'Djilali, S., <b>Bentout, S.</b>, Ghanbari, B., Kumar, S.', y: 2021, t: 'Spatial patterns in a vegetation model with internal competition and feedback regulation', j: 'The European Physical Journal Plus', vol: '136(2), 1–24' },
+  { a: '<b>Bentout, S.</b>, Ghanbari, B., Djilali, S., Guin, L.N.', y: 2021, t: 'Impact of predation in the spread of an infectious disease with time fractional derivative and social behavior', j: 'International Journal of Modeling, Simulation, and Scientific Computing', vol: '12(04), 2150023' },
+  { a: 'Djilali, S., <b>Bentout, S.</b>', y: 2021, t: 'Global dynamics of SVIR epidemic model with distributed delay and imperfect vaccine', j: 'Results in Physics', vol: '25, 104245' },
+  { a: 'Djilali, S., <b>Bentout, S.</b>', y: 2021, t: 'Pattern formations of a delayed diffusive predator-prey model with predator harvesting and prey social behavior', j: 'Mathematical Methods in the Applied Sciences', vol: '44(11), 9128–9142' },
+  { a: '<b>Bentout, S.</b>, Kumar, S., Djilali, S.', y: 2021, t: 'Hopf bifurcation analysis in an age-structured heroin model', j: 'The European Physical Journal Plus', vol: '136(2), 1–13' },
+  { a: '<b>Bentout, S.</b>, Djilali, S., Kumar, S., Touaoula, T.M.', y: 2021, t: 'Threshold dynamics of difference equations for SEIR model with nonlinear incidence function and infinite delay', j: 'The European Physical Journal Plus', vol: '136(5), 1–21' },
+  { a: 'Djilali, S., <b>Bentout, S.</b>, Ghanbari, B., Kumar, S.', y: 2021, t: 'Modeling escaping behavior from the herd in different ecological interactions', j: 'Physica Scripta', vol: '96(12), 124016' },
+  { a: '<b>Bentout, S.</b>, Touaoula, T.M.', y: 2016, t: 'Global analysis of an infection age model with a class of nonlinear incidence rates', j: 'Journal of Mathematical Analysis and Applications', vol: '434(2), 1211–1239' },
+  { a: 'Djilali, S., <b>Bentout, S.</b>', y: 2020, t: 'Spatiotemporal patterns in a diffusive predator-prey model with prey social behavior', j: 'Acta Applicandae Mathematicae', vol: '169(1), 125–143' },
+  { a: '<b>Bentout, S.</b>, Chekroun, A., Kuniya, T.', y: 2020, t: 'Parameter estimation and prediction for coronavirus disease outbreak 2019 (COVID-19) in Algeria', j: 'AIMS Public Health', vol: '7(2), 306–318' },
+  { a: 'Djilali, S., Ghanbari, B., <b>Bentout, S.</b>, Mezouaghi, A.', y: 2020, t: 'Turing-Hopf bifurcation in a diffusive mussel-algae model with time-fractional-order derivative', j: 'Chaos Solitons and Fractals', vol: '138, 109954' },
+  { a: '<b>Bentout, S.</b>, Djilali, S., Tridane, A., Touaoula, T.M.', y: 2020, t: 'Age-structured modelling of COVID-19 epidemic in the USA, UAE and Algeria', j: 'Alexandria Engineering Journal', vol: '60(1), 401–411' },
+  { a: '<b>Bentout, S.</b>, Djilali, S., Chekroun, A.', y: 2020, t: 'Global threshold dynamics of an age structured alcoholism model', j: 'International Journal of Biomathematics', vol: '14(03), 2150013' },
+  { a: '<b>Bentout, S.</b>, Djilali, S., Ghanbari, B.', y: 2020, t: 'Backward, Hopf bifurcation in a heroin epidemic model with treat age', j: 'International Journal of Modeling Simulation and Scientific Computing', vol: '12(02), 2150018' },
+  { a: 'Djilali, S., <b>Bentout, S.</b>, Touaoula, T.M., Tridane, A.', y: 2021, t: 'Global dynamics of alcoholism epidemic model with distributed delays', j: 'Mathematical Biosciences and Engineering', vol: '18(6), 8245–8256', doi: 'https://doi.org/10.3934/mbe.2021409' },
+  { a: 'Djilali, S., <b>Bentout, S.</b>, Touaoula, T.M., Tridane, A., Kumar, S.', y: 2021, t: 'Global behavior of heroin epidemic model with time distributed delay and nonlinear incidence function', j: 'Results in Physics', vol: '31, 104953', doi: 'https://doi.org/10.1016/j.rinp.2021.104953' },
+  { a: '<b>Bentout, S.</b>, Djilali, S., Touaoula, T.M., Zeb, A., Atangana, A.', y: 2022, t: 'Bifurcation analysis for a double age dependence epidemic model with two delays', j: 'Nonlinear Dynamics', vol: '108(2), 1821–1835', doi: 'https://doi.org/10.1007/s11071-022-07234-8' },
+  { a: '<b>Bentout, S.</b>, Djilali, S., Atangana, A.', y: 2022, t: 'Bifurcation analysis of an age structured prey-predator model with infection developed in prey', j: 'Mathematical Methods in the Applied Sciences', vol: '45(3), 1189–1208', doi: 'https://doi.org/10.1002/mma.7846' },
+  { a: 'Djilali, S., <b>Bentout, S.</b>, Zeb, A., Saeed, T.', y: 2022, t: 'Global stability of hybrid smoking model with nonlocal diffusion', j: 'Fractals', vol: '30(08), 2240224', doi: 'https://doi.org/10.1142/S0218348X22402241' },
+  { a: '<b>Bentout, S.</b>, Djilali, S.', y: 2023, t: 'Asymptotic profiles of a nonlocal dispersal SIR epidemic model with treat-age in a heterogeneous environment', j: 'Mathematics and Computers in Simulation', vol: '203, 926–956', doi: 'https://doi.org/10.1016/j.matcom.2022.07.020' },
+  { a: 'Djilali, S., Chen, Y., <b>Bentout, S.</b>', y: 2023, t: 'Asymptotic analysis of SIR epidemic model with nonlocal diffusion and generalized nonlinear incidence functional', j: 'Mathematical Methods in the Applied Sciences', vol: '46(5), 6279–6301', doi: 'https://doi.org/10.1002/mma.8903' },
+  { a: '<b>Bentout, S.</b>, Djilali, S., Kuniya, T., Wang, J.', y: 2023, t: 'Mathematical analysis of a vaccination epidemic model with nonlocal diffusion', j: 'Mathematical Methods in the Applied Sciences', vol: '46(9), 10970–10994', doi: 'https://doi.org/10.1002/mma.9162' },
+  { a: 'Djilali, S., <b>Bentout, S.</b>, Touaoula, T.M., Atangana, A.', y: 2023, t: 'Threshold dynamics for an age-structured heroin epidemic model with distributed delays', j: 'Mathematical Methods in the Applied Sciences', vol: '46(13), 13595–13619', doi: 'https://doi.org/10.1002/mma.9275' },
+  { a: 'Mahroug, F., <b>Bentout, S.</b>', y: 2023, t: 'Dynamics of a diffusion dispersal viral epidemic model with age infection in a spatially heterogeneous environment', j: 'Mathematical Methods in the Applied Sciences', vol: '46(14), 14983–15010', doi: 'https://doi.org/10.1002/mma.9357' },
+  { a: 'Djilali, S., <b>Bentout, S.</b>, Zeb, A.', y: 2023, t: 'Dynamics of a diffusive delayed viral infection model in a heterogeneous environment', j: 'Mathematical Methods in the Applied Sciences', vol: '46(16), 16596–16624', doi: 'https://doi.org/10.1002/mma.9463' },
+  { a: '<b>Bentout, S.</b>', y: 2024, t: 'Analysis of global behavior in an age-structured epidemic model with nonlocal dispersal and distributed delay', j: 'Mathematical Methods in the Applied Sciences', vol: '47(9), 7219–7242', doi: 'https://doi.org/10.1002/mma.9969' },
+  { a: 'Djilali, S., Chen, Y., <b>Bentout, S.</b>', y: 2024, t: 'Dynamics of a delayed nonlocal reaction-diffusion heroin epidemic model in a heterogeneous environment', j: 'Mathematical Methods in the Applied Sciences', vol: '48(1), 273–307', doi: 'https://doi.org/10.1002/mma.10327' },
+  { a: 'Djilali, S., <b>Bentout, S.</b>', y: 2024, t: 'Dynamics of a generalized nonlocal dispersion SIS epidemic model', j: 'Journal of Evolution Equations', vol: '24, 83', doi: 'https://doi.org/10.1007/s00028-024-01013-1' },
+  { a: 'Djilali, S., Loumi, A., <b>Bentout, S.</b>, Sarmad, G., Tridane, A.', y: 2024, t: 'Mathematical modelling of containing the spread of heroin addiction via awareness program', j: 'Mathematical Methods in the Applied Sciences', vol: '48(4), 4244–4261', doi: 'https://doi.org/10.1002/mma.10544' },
+  { a: '<b>Bentout, S.</b>, Djilali, S.', y: 2024, t: 'Asymptotic profiles of a generalized reaction-diffusion SIS epidemic model with spatial heterogeneity', j: 'Zeitschrift für angewandte Mathematik und Physik', vol: '75(6), 225', doi: 'https://doi.org/10.1007/s00033-024-02373-x' },
+  { a: 'Nabti, A., Djilali, S., <b>Bentout, S.</b>', y: 2025, t: 'Stability and spatial profiles of a double age-dependent diffusive viral infection model with spatial heterogeneity', j: 'Zeitschrift für angewandte Mathematik und Physik', vol: '76(3), 89', doi: 'https://doi.org/10.1007/s00033-025-02466-1' },
+  { a: '<b>Bentout, S.</b>, Djilali, S.', y: 2025, t: 'Asymptotic dynamics of SIRS epidemic model with dispersal budgets and nonlinear rates about heterogeneous environments', j: 'Mathematical Modelling of Natural Phenomena', vol: '20, 17', doi: 'https://doi.org/10.1051/mmnp/2025015' },
+  { a: 'Sarmad, G., Djilali, S., <b>Bentout, S.</b>, Tridane, A.', y: 2025, t: 'Fear effect on the mobility of individuals in a spatially heterogeneous environment: a delayed diffusive SPIR epidemic model', j: 'Scientific Reports', vol: '15, 31082', doi: 'https://doi.org/10.1038/s41598-025-16280-2' },
+  { a: 'Djilali, S., <b>Bentout, S.</b>', y: 2025, t: 'Dynamics and spatial profiles of an SIS epidemic model with varying total population and spatiotemporal heterogeneity', j: 'Zeitschrift für angewandte Mathematik und Physik', vol: '76, 225', doi: 'https://doi.org/10.1007/s00033-025-02607-6' },
+  { a: '<b>Bentout, S.</b>', y: 2025, t: 'Dynamics of a nonlocal diffusion virus model with age structure, heterogeneity, nonlinear incidence rates and time delays', j: 'International Journal of Modelling and Simulation', vol: '1–27', doi: 'https://doi.org/10.1080/02286203.2025.2575596' },
+  { a: 'Guenad, B., Djilali, S., <b>Bentout, S.</b>', y: 2026, t: 'Behavior of a nonlocal species-pathogen system with varied dispersal mechanisms in heterogeneous habitats', j: 'Journal of Computational and Applied Mathematics', vol: '482, 117341', doi: 'https://doi.org/10.1016/j.cam.2026.117341' },
+  { a: '<b>Bentout, S.</b>', y: 2026, t: 'Analysis of traveling wave solutions for an SIS model with age structure', j: 'Zeitschrift für angewandte Mathematik und Physik', vol: '77, 79', doi: 'https://doi.org/10.1007/s00033-025-02703-7' },
+  { a: '<b>Bentout, S.</b>, Djilali, S., Naik, P.A.', y: 2026, t: 'Asymptotic profiles of a generalized reaction-diffusion viral-infection model with logistic source', j: 'Journal of Mathematical Analysis and Applications', vol: '556(1), 130146', doi: 'https://doi.org/10.1016/j.jmaa.2025.130146' },
+  { a: 'Djilali, S., <b>Bentout, S.</b>, Kuniya, T.', y: 2026, t: 'Threshold analysis for a diffusive SIS epidemic model with infection-age', j: 'Mathematical Biosciences', vol: '109729', doi: 'https://doi.org/10.1016/j.mbs.2026.109729' },
+  { a: 'Su, G., Djilali, S., Nabti, A., <b>Bentout, S.</b>', y: 2026, t: 'Dynamics of a spatiotemporal viral infection model with two age structures and nonlinear incidence function', j: 'International Journal of Biomathematics', vol: '2650071', doi: 'https://doi.org/10.1142/S1793524526500713' }
+];
+
+// Sort newest first for display, but keep numbering as chronological [1..44]
+const pubList = document.getElementById('pubList');
+publications.forEach((p, i) => {
+  const li = document.createElement('li');
+  li.innerHTML = `${p.a} (${p.y}). ${p.t}. <i>${p.j}</i>, ${p.vol}.${p.doi ? ` <a href="${p.doi}" target="_blank" rel="noopener">${p.doi.replace('https://doi.org/','doi:')}</a>` : ''}`;
+  pubList.appendChild(li);
+});
+</script>
+
+</body>
+</html>
