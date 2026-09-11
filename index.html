@@ -12,12 +12,17 @@
 <style>
   :root{
     --bg: #F6F7FB; --bg-panel: #FFFFFF; --bg-panel-alt: #EFF2FA; --bg-raised: #E7EBF6;
-    --accent-violet: #6F4CE0; --accent-cyan: #0EA5B7; --accent-amber: #C97F12;
+    --accent-violet: #6F4CE0; --accent-violet-light: #9B7FF0; --accent-cyan: #0EA5B7; --accent-amber: #C97F12;
+    --accent-pink: #D64C9B; --accent-emerald: #10A66B;
+    --gradient-primary: linear-gradient(135deg, #6F4CE0 0%, #0EA5B7 100%);
+    --gradient-soft: linear-gradient(135deg, rgba(111,76,224,0.08) 0%, rgba(14,165,183,0.08) 100%);
+    --gradient-card: linear-gradient(145deg, rgba(111,76,224,0.04), rgba(14,165,183,0.04));
     --text: #171D33; --text-muted: #4E5872; --text-dim: #838DA8;
     --border: rgba(23,29,51,0.09); --border-strong: rgba(23,29,51,0.18);
     --radius: 14px;
     --shadow-sm: 0 1px 2px rgba(23,29,51,0.04), 0 1px 1px rgba(23,29,51,0.03);
     --shadow-md: 0 10px 30px rgba(23,29,51,0.07), 0 2px 8px rgba(23,29,51,0.04);
+    --shadow-glow: 0 0 30px rgba(111,76,224,0.15);
     --display: 'Space Grotesk', sans-serif; --body: 'Inter', sans-serif; --mono: 'IBM Plex Mono', monospace;
   }
   *{ box-sizing: border-box; margin:0; padding:0; }
@@ -25,89 +30,228 @@
   body{ background: var(--bg); color: var(--text); font-family: var(--body); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
   a{ color: inherit; text-decoration: none; } ul{ list-style: none; } img{ max-width:100%; display:block; }
   .icon{ width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex-shrink:0; vertical-align: middle; }
+
+  /* === VIBRANT BACKGROUND === */
   body::before{
     content:""; position: fixed; inset: 0;
-    background-image: radial-gradient(circle at 15% 8%, rgba(111,76,224,0.09), transparent 40%),
-                       radial-gradient(circle at 88% 18%, rgba(14,165,183,0.08), transparent 42%);
+    background-image: 
+      radial-gradient(circle at 15% 8%, rgba(111,76,224,0.12), transparent 40%),
+      radial-gradient(circle at 88% 18%, rgba(14,165,183,0.10), transparent 42%),
+      radial-gradient(circle at 50% 90%, rgba(214,76,155,0.06), transparent 45%),
+      radial-gradient(circle at 10% 70%, rgba(16,166,107,0.05), transparent 40%);
     pointer-events:none; z-index:0;
   }
+  /* floating orbs */
+  .orb{ position: fixed; border-radius: 50%; filter: blur(80px); opacity: 0.35; pointer-events: none; z-index: 0; animation: float 20s ease-in-out infinite; }
+  .orb-1{ width: 400px; height: 400px; background: radial-gradient(circle, rgba(111,76,224,0.4), transparent); top: -100px; left: -100px; }
+  .orb-2{ width: 350px; height: 350px; background: radial-gradient(circle, rgba(14,165,183,0.35), transparent); bottom: -50px; right: -80px; animation-delay: -7s; animation-duration: 25s; }
+  .orb-3{ width: 250px; height: 250px; background: radial-gradient(circle, rgba(214,76,155,0.25), transparent); top: 50%; left: 60%; animation-delay: -12s; animation-duration: 22s; }
+  @keyframes float {
+    0%, 100%{ transform: translate(0, 0) scale(1); }
+    33%{ transform: translate(30px, -40px) scale(1.1); }
+    66%{ transform: translate(-20px, 20px) scale(0.95); }
+  }
+
   .wrap{ max-width: 940px; margin: 0 auto; padding: 0 28px; position: relative; z-index:1; }
   .eyebrow{ font-family: var(--mono); font-size: 12px; letter-spacing:.14em; text-transform: uppercase; color: var(--accent-cyan); display:inline-flex; align-items:center; gap:10px; }
-  .eyebrow::before{ content:""; width:18px; height:1px; background: var(--accent-cyan); display:inline-block; }
+  .eyebrow::before{ content:""; width:18px; height:2px; background: var(--gradient-primary); display:inline-block; border-radius: 2px; }
   h1,h2,h3,h4{ font-family: var(--display); font-weight:600; letter-spacing:-0.01em; }
 
-  header.site{ position: sticky; top:0; z-index:50; background: rgba(246,247,251,0.85); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); }
+  /* === HEADER === */
+  header.site{ 
+    position: sticky; top:0; z-index:50; 
+    background: rgba(246,247,251,0.82); backdrop-filter: blur(16px); 
+    border-bottom: 1px solid rgba(111,76,224,0.15);
+    box-shadow: 0 1px 20px rgba(111,76,224,0.06);
+  }
   nav{ display:flex; align-items:center; justify-content: space-between; flex-wrap:wrap; gap:10px; padding:14px 28px; max-width:940px; margin:0 auto; }
   .brand{ display:flex; align-items:center; gap:12px; }
-  .brand img{ width:42px; height:42px; border-radius:50%; object-fit:cover; box-shadow: var(--shadow-sm); }
+  .brand img{ width:42px; height:42px; border-radius:50%; object-fit:cover; box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--accent-violet-light), var(--shadow-sm); transition: box-shadow .3s; }
+  .brand img:hover{ box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--accent-cyan), 0 0 20px rgba(14,165,183,0.3); }
   .brand-text{ display:flex; flex-direction:column; line-height:1.15; }
-  .brand-text strong{ font-family: var(--display); font-size:15px; }
+  .brand-text strong{ font-family: var(--display); font-size:15px; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
   .brand-text span{ font-family: var(--mono); font-size:10px; color: var(--text-dim); letter-spacing:.05em; }
   .nav-links{ display:flex; gap:24px; align-items:center; }
-  .nav-links a{ font-size:13.5px; color: var(--text-muted); font-weight:500; transition: color .2s; }
+  .nav-links a{ font-size:13.5px; color: var(--text-muted); font-weight:500; transition: color .2s; position: relative; }
+  .nav-links a::after{ content:""; position:absolute; bottom:-4px; left:0; width:0; height:2px; background: var(--gradient-primary); transition: width .25s; border-radius:2px; }
   .nav-links a:hover{ color: var(--accent-violet); }
-  .nav-cta{ border:1px solid var(--border-strong); padding:9px 16px; border-radius:999px; font-size:13px; font-weight:500; display:inline-flex; align-items:center; gap:7px; transition: all .2s; }
-  .nav-cta:hover{ background: var(--accent-violet); border-color: var(--accent-violet); color:#fff; }
+  .nav-links a:hover::after{ width:100%; }
+  .nav-cta{ 
+    border:1.5px solid transparent; 
+    background: linear-gradient(#fff, #fff) padding-box, var(--gradient-primary) border-box;
+    padding:9px 16px; border-radius:999px; font-size:13px; font-weight:600; 
+    display:inline-flex; align-items:center; gap:7px; transition: all .25s; 
+    color: var(--accent-violet);
+  }
+  .nav-cta:hover{ background: var(--gradient-primary); color:#fff; border-color: transparent; box-shadow: 0 4px 15px rgba(111,76,224,0.3); transform: translateY(-1px); }
   @media (max-width:760px){ .nav-links{ display:none; } }
 
-  .hero{ padding: 64px 0 56px; }
+  /* === HERO === */
+  .hero{ padding: 64px 0 56px; position: relative; }
   .hero-grid{ display:grid; grid-template-columns: 0.6fr 1fr; gap:44px; align-items:center; }
-  .hero-photo{ aspect-ratio:1/1; border-radius:20px; overflow:hidden; box-shadow: var(--shadow-md); border:1px solid var(--border); }
-  .hero-photo img{ width:100%; height:100%; object-fit:cover; }
-  .hero h1{ font-size: clamp(28px,4vw,40px); line-height:1.08; margin: 14px 0 6px; }
-  .hero .role{ font-size:16px; color: var(--accent-violet); font-weight:600; margin-bottom:10px; }
+  .hero-photo{ 
+    aspect-ratio:1/1; border-radius:24px; overflow:hidden; 
+    box-shadow: 0 20px 50px rgba(111,76,224,0.18), 0 0 0 4px #fff, 0 0 0 6px rgba(111,76,224,0.15);
+    border: none;
+    position: relative;
+  }
+  .hero-photo::after{
+    content:""; position:absolute; inset:0;
+    background: linear-gradient(135deg, rgba(111,76,224,0.12), transparent 50%, rgba(14,165,183,0.08));
+    border-radius: 24px;
+  }
+  .hero-photo img{ width:100%; height:100%; object-fit:cover; transition: transform .6s; }
+  .hero-photo:hover img{ transform: scale(1.05); }
+  .hero h1{ font-size: clamp(28px,4vw,42px); line-height:1.08; margin: 14px 0 6px; background: linear-gradient(135deg, #171D33 0%, #6F4CE0 60%, #0EA5B7 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .hero .role{ font-size:16px; font-weight:600; margin-bottom:10px; color: var(--accent-violet); }
   .hero .affil{ font-size:14px; color: var(--text-muted); margin-bottom:20px; max-width:480px; }
   .quick-links{ display:flex; flex-wrap:wrap; gap:10px; margin-bottom:22px; }
-  .quick-links a{ font-size:12.5px; font-weight:500; border:1px solid var(--border-strong); padding:8px 14px; border-radius:999px; display:inline-flex; align-items:center; gap:7px; background: var(--bg-panel); transition: all .2s; }
-  .quick-links a:hover{ border-color: var(--accent-cyan); color: var(--accent-cyan); }
+  .quick-links a{ 
+    font-size:12.5px; font-weight:500; 
+    border:1.5px solid transparent; 
+    background: linear-gradient(#fff, #fff) padding-box, var(--gradient-primary) border-box;
+    padding:8px 16px; border-radius:999px; 
+    display:inline-flex; align-items:center; gap:7px; 
+    transition: all .25s; color: var(--text-muted);
+  }
+  .quick-links a:hover{ 
+    background: var(--gradient-primary); color: #fff; border-color: transparent;
+    box-shadow: 0 4px 15px rgba(111,76,224,0.25); transform: translateY(-2px);
+  }
+  .quick-links a:hover .icon{ stroke: #fff; }
   .topic-tags{ display:flex; flex-wrap:wrap; gap:8px; }
-  .topic-tag{ font-size:11.5px; padding:5px 12px; border-radius:999px; background: var(--bg-panel-alt); color: var(--text-muted); border:1px solid var(--border); font-family: var(--mono); }
+  .topic-tag{ 
+    font-size:11.5px; padding:5px 14px; border-radius:999px; 
+    background: linear-gradient(135deg, rgba(111,76,224,0.08), rgba(14,165,183,0.08));
+    color: var(--accent-violet); border:1px solid rgba(111,76,224,0.18); 
+    font-family: var(--mono); font-weight:500; transition: all .2s;
+  }
+  .topic-tag:hover{ background: var(--gradient-primary); color:#fff; border-color: transparent; transform: translateY(-1px); }
   @media (max-width:760px){ .hero-grid{ grid-template-columns:1fr; } .hero-photo{ max-width:180px; margin:0 auto; } .hero{ text-align:center; } .hero .affil{ margin-left:auto; margin-right:auto; } .quick-links, .topic-tags{ justify-content:center; } }
 
-  section{ padding: 52px 0; }
+  /* === SECTIONS === */
+  section{ padding: 52px 0; position: relative; }
   .section-head{ max-width:640px; margin-bottom:28px; }
-  .section-head h2{ font-size: clamp(22px,3vw,27px); margin-top:10px; }
-  .section-head p{ color: var(--text-muted); margin-top:8px; font-size:14.5px; }
+  .section-head h2{ font-size: clamp(22px,3vw,28px); margin-top:10px; }
+  .section-head h2::after{ content:""; display:block; width:50px; height:3px; background: var(--gradient-primary); border-radius:3px; margin-top:10px; }
+  .section-head p{ color: var(--text-muted); margin-top:10px; font-size:14.5px; }
 
+  /* === PROFILE === */
   .profile-text{ font-size:15px; color: var(--text-muted); max-width:740px; }
+  .profile-text::first-letter{ font-size: 2.5em; float: left; line-height: 1; margin-right: 8px; font-family: var(--display); font-weight: 700; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 
-  .pub-list li{ font-size:13.5px; color: var(--text-muted); padding:14px 0; border-bottom:1px solid var(--border); }
-  .pub-list li:last-child{ border-bottom:none; }
+  /* === PUBLICATIONS === */
+  .pub-list li{ 
+    font-size:13.5px; color: var(--text-muted); 
+    padding:16px 18px; margin-bottom:8px; 
+    border-radius: 10px; 
+    background: var(--bg-panel); 
+    border: 1px solid var(--border);
+    transition: all .25s; 
+    border-left: 3px solid transparent;
+  }
+  .pub-list li:hover{ 
+    background: var(--bg-panel); 
+    border-left-color: var(--accent-violet); 
+    box-shadow: 0 4px 20px rgba(111,76,224,0.08);
+    transform: translateX(4px);
+  }
   .pub-list li b{ color: var(--text); }
-  .pub-list li a{ color: var(--accent-violet); font-family: var(--mono); font-size:11.5px; }
-  .pub-list li a:hover{ text-decoration: underline; }
+  .pub-list li a{ color: var(--accent-cyan); font-family: var(--mono); font-size:11.5px; transition: color .2s; }
+  .pub-list li a:hover{ color: var(--accent-violet); text-decoration: underline; }
   .scholar-note{ margin-top:18px; font-size:13px; color: var(--text-dim); }
-  .scholar-note a{ color: var(--accent-cyan); font-weight:500; }
+  .scholar-note a{ color: var(--accent-violet); font-weight:500; transition: color .2s; }
+  .scholar-note a:hover{ color: var(--accent-cyan); }
 
+  /* === MATHEMATICIANS === */
   .math-grid{ display:grid; grid-template-columns: repeat(2, 1fr); gap:20px; }
-  .math-card{ background: var(--bg-panel); border:1px solid var(--border); border-radius: var(--radius); padding:26px 24px; box-shadow: var(--shadow-sm); transition: box-shadow .2s, transform .2s; }
-  .math-card:hover{ box-shadow: var(--shadow-md); transform: translateY(-2px); }
+  .math-card{ 
+    background: var(--bg-panel); 
+    border:1px solid var(--border); 
+    border-radius: var(--radius); 
+    padding:26px 24px; 
+    box-shadow: var(--shadow-sm); 
+    transition: all .3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .math-card::before{
+    content:""; position:absolute; top:0; left:0; right:0; height:3px;
+    background: var(--gradient-primary); opacity:0; transition: opacity .3s;
+  }
+  .math-card:hover{ 
+    box-shadow: 0 12px 35px rgba(111,76,224,0.13), 0 0 0 1px rgba(111,76,224,0.1); 
+    transform: translateY(-4px); 
+  }
+  .math-card:hover::before{ opacity:1; }
   .math-card .m-name{ font-family: var(--display); font-size:17px; font-weight:600; }
   .math-card .m-meta{ font-family: var(--mono); font-size:11px; color: var(--accent-cyan); letter-spacing:.03em; margin: 3px 0 12px; display:block; }
   .math-card .m-bio{ font-size:13px; color: var(--text-muted); margin-bottom:14px; }
-  .math-card .m-quote{ border-left:3px solid var(--accent-violet); padding-left:12px; font-style:italic; font-size:13px; color: var(--text); }
+  .math-card .m-quote{ 
+    border-left:3px solid var(--accent-violet); 
+    padding-left:12px; font-style:italic; font-size:13px; color: var(--text); 
+    background: linear-gradient(90deg, rgba(111,76,224,0.04), transparent);
+    padding: 8px 8px 8px 12px; border-radius: 0 6px 6px 0;
+  }
   .math-card .m-quote span{ display:block; margin-top:5px; font-style:normal; font-family: var(--mono); font-size:10.5px; color: var(--text-dim); }
   @media (max-width:700px){ .math-grid{ grid-template-columns:1fr; } }
 
+  /* === SERVICE === */
   .service-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 28px; }
-  .service-col h3{ font-family: var(--mono); font-size:12px; text-transform:uppercase; letter-spacing:.06em; color: var(--accent-violet); margin-bottom:14px; display:flex; align-items:center; gap:8px; }
-  .service-col h3 .icon{ width:15px; height:15px; }
+  .service-col h3{ 
+    font-family: var(--mono); font-size:12px; text-transform:uppercase; letter-spacing:.06em; 
+    color: var(--accent-violet); margin-bottom:14px; display:flex; align-items:center; gap:8px; 
+  }
+  .service-col h3 .icon{ width:15px; height:15px; color: var(--accent-cyan); }
   .service-col p{ font-size:13.5px; color: var(--text-muted); }
+  .service-col p i{ color: var(--accent-violet); font-weight:500; }
   @media (max-width:700px){ .service-grid{ grid-template-columns:1fr; } }
 
-  .contact-panel{ background: var(--bg-panel); border:1px solid var(--border); border-radius: var(--radius); padding:40px; box-shadow: var(--shadow-md); }
+  /* === CONTACT === */
+  .contact-panel{ 
+    background: var(--bg-panel); 
+    border:1px solid var(--border); 
+    border-radius: var(--radius); 
+    padding:40px; 
+    box-shadow: var(--shadow-md); 
+    position: relative;
+    overflow: hidden;
+  }
+  .contact-panel::before{
+    content:""; position:absolute; top:0; left:0; right:0; height:4px;
+    background: var(--gradient-primary);
+  }
   .cline{ display:flex; gap:14px; margin-bottom:18px; align-items:flex-start; }
-  .cline .cicon{ width:36px; height:36px; border-radius:9px; background: var(--bg-panel-alt); color: var(--accent-violet); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-  .cline .cicon .icon{ width:17px; height:17px; }
+  .cline:last-child{ margin-bottom:0; }
+  .cline .cicon{ 
+    width:40px; height:40px; border-radius:10px; 
+    background: linear-gradient(135deg, rgba(111,76,224,0.1), rgba(14,165,183,0.1));
+    color: var(--accent-violet); display:flex; align-items:center; justify-content:center; flex-shrink:0; 
+    transition: all .25s;
+  }
+  .cline:hover .cicon{ background: var(--gradient-primary); color: #fff; transform: scale(1.05); }
+  .cline .cicon .icon{ width:18px; height:18px; }
   .cline .k{ display:block; font-family: var(--mono); font-size:10.5px; color: var(--text-dim); text-transform:uppercase; letter-spacing:.05em; margin-bottom:3px; }
   .cline .v{ color: var(--text); font-weight:500; font-size:14px; }
+  .cline .v a{ transition: color .2s; }
   .cline .v a:hover{ color: var(--accent-cyan); }
 
-  footer{ border-top:1px solid var(--border); padding:30px 0; text-align:center; }
+  /* === FOOTER === */
+  footer{ 
+    border-top:1px solid rgba(111,76,224,0.15); 
+    padding:30px 0; text-align:center; 
+    background: linear-gradient(180deg, transparent, rgba(111,76,224,0.02));
+  }
   footer p{ font-size:12px; color: var(--text-dim); }
+  footer p span{ background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight:600; }
 </style>
 </head>
 <body>
+
+<!-- floating orbs -->
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
 
 <svg style="display:none">
   <symbol id="i-mail" viewBox="0 0 24 24"><path d="M3 6h18v12H3z" stroke="currentColor" fill="none" stroke-width="1.8" stroke-linejoin="round"/><path d="M3 7l9 6 9-6" stroke="currentColor" fill="none" stroke-width="1.8" stroke-linejoin="round"/></symbol>
@@ -206,71 +350,4 @@
       </div>
       <div class="math-grid">
         <div class="math-card">
-          <span class="m-name">Évariste Galois</span>
-          <span class="m-meta">1811 – 1832 · French</span>
-          <p class="m-bio">Founder of what became known as Galois theory, linking group theory to the solvability of polynomial equations by radicals. He wrote most of his foundational work as a teenager and died at twenty, the night before a duel — leaving behind ideas that reshaped abstract algebra.</p>
-          <p class="m-quote">"Do not weep, Alfred! I need all my courage to die at the age of twenty."<span>From his last letter to Auguste Chevalier, 1832</span></p>
-        </div>
-        <div class="math-card">
-          <span class="m-name">Henri Poincaré</span>
-          <span class="m-meta">1854 – 1912 · French</span>
-          <p class="m-bio">Often called "The Last Universalist" for his reach across mathematics, physics, and philosophy of science. A pioneer of topology and dynamical systems, his work on the three-body problem anticipated modern chaos theory.</p>
-          <p class="m-quote">"Mathematics is the art of giving the same name to different things."<span>Henri Poincaré</span></p>
-        </div>
-        <div class="math-card">
-          <span class="m-name">Carl Friedrich Gauss</span>
-          <span class="m-meta">1777 – 1855 · German</span>
-          <p class="m-bio">One of history's most influential mathematicians, with foundational contributions to number theory, statistics, differential geometry, and astronomy. Nicknamed "Princeps mathematicorum" — the Prince of Mathematicians.</p>
-          <p class="m-quote">"Mathematics is the queen of the sciences."<span>Carl Friedrich Gauss</span></p>
-        </div>
-        <div class="math-card">
-          <span class="m-name">Emmy Noether</span>
-          <span class="m-meta">1882 – 1935 · German</span>
-          <p class="m-bio">Developed foundational results in abstract algebra and Noether's theorem, linking symmetries in physics to conservation laws. Regarded as one of the most important mathematicians of the 20th century, despite facing significant institutional barriers as a woman in academia.</p>
-          <p class="m-quote">"The most significant creative mathematical genius thus far produced since the higher education of women began."<span>Albert Einstein, on Emmy Noether, 1935</span></p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= SERVICE ================= -->
-  <section id="service">
-    <div class="wrap">
-      <div class="section-head"><span class="eyebrow">Beyond research</span><h2>Academic Service</h2></div>
-      <div class="service-grid">
-        <div class="service-col">
-          <h3><svg class="icon"><use href="#i-book"/></svg>Editorial &amp; Service</h3>
-          <p>Academic Editor, <i>Journal of Applied Mathematics</i> (Wiley); Editor, <i>Journal of Applied Mathematics and Computing</i>; PhD thesis examiner and jury member at several Algerian universities; Team Leader at LMRISE.</p>
-        </div>
-        <div class="service-col">
-          <h3><svg class="icon"><use href="#i-infinity"/></svg>Current Research Directions</h3>
-          <p>Predator–prey models with advection and free boundaries; SIS epidemic models with free boundaries; age-structured host–pathogen dynamics.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= CONTACT ================= -->
-  <section id="contact">
-    <div class="wrap">
-      <div class="section-head"><span class="eyebrow">Get in touch</span><h2>Contact</h2></div>
-      <div class="contact-panel">
-        <div class="cline"><div class="cicon"><svg class="icon"><use href="#i-mail"/></svg></div><div><span class="k">Email</span><span class="v"><a href="mailto:soufiane.bentout@univ-temouchent.edu.dz">soufiane.bentout@univ-temouchent.edu.dz</a></span></div></div>
-        <div class="cline"><div class="cicon"><svg class="icon"><use href="#i-pin"/></svg></div><div><span class="k">Address</span><span class="v">Ain Temouchent, Algeria</span></div></div>
-        <div class="cline"><div class="cicon"><svg class="icon"><use href="#i-target"/></svg></div><div><span class="k">Laboratory</span><span class="v"><a href="https://bentouts.github.io/LabLMRISE.github.io/" target="_blank" rel="noopener">LMRISE Lab</a></span></div></div>
-      </div>
-    </div>
-  </section>
-
-</main>
-
-<footer>
-  <div class="wrap"><p>© <span id="year"></span> Soufiane Bentout — Professor of Applied Mathematics, University of Ain Temouchent, Belhadj Bouchaib.</p></div>
-</footer>
-
-<script>
-document.getElementById('year').textContent = new Date().getFullYear();
-</script>
-
-</body>
-</html>
+          <span class="m-name">Évariste
